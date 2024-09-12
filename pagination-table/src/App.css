@@ -7,7 +7,14 @@
 
 
 .artworks {
-  padding: 20px 40px;
+  max-width: 900px;
   margin: 20px;
-  border: 1px solid #333;
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
 }

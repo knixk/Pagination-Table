@@ -5,20 +5,34 @@ import { Column } from 'primereact/column';
 const ArtworksTable: React.FC = () => {
   const [artworks, setArtworks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [page, setPage] = useState(0);
 
-  useEffect(() => {
-    fetch('https://api.artic.edu/api/v1/artworks?page=1')
+  const fetchArtworks = (pageNumber: number) => {
+    setLoading(true);
+    fetch(`https://api.artic.edu/api/v1/artworks?page=${pageNumber + 1}`)
       .then((response) => response.json())
       .then((data) => {
         setArtworks(data.data);
+        setTotalRecords(data.pagination.total);
         setLoading(false);
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    fetchArtworks(page);
+  }, [page]);
+
+  const onPageChange = (event: any) => {
+    setPage(event.page);
+  };
 
   return (
     <div className='artworks'>
       <h2>Artworks Table</h2>
-      <DataTable value={artworks} loading={loading}>
+      <DataTable value={artworks} loading={loading} paginator
+        rows={10} totalRecords={totalRecords}
+        onPage={onPageChange}>
         <Column field="title" header="Title" />
         <Column field="place_of_origin" header="Place of Origin" />
         <Column field="artist_display" header="Artist" />
