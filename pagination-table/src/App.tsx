@@ -1,19 +1,20 @@
 import './App.css'
-import { PrimeReactProvider } from 'primereact/api';
 import ArtworksTable from './components/ArtworksTable';
 import 'primereact/resources/themes/saga-blue/theme.css';  // Choose the theme you like
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 
+import { BrowserRouter as Router, Route, Routes, useNavigate, useSearchParams } from 'react-router-dom';
 
-function App() {
-
+const App: React.FC = () => {
   return (
-    <PrimeReactProvider>
-      <ArtworksTable></ArtworksTable>
-    </PrimeReactProvider>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<ArtworksTable />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
