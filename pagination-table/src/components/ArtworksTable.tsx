@@ -19,6 +19,8 @@ const ArtworksTable: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         setArtworks(data.data);
+        console.log(data);
+
         setTotalRecords(data.pagination.total);
         setLoading(false);
       });
@@ -29,17 +31,20 @@ const ArtworksTable: React.FC = () => {
   }, [currentPage]);
 
   const onPageChange = (event: any) => {
-    const newPage = event.page + 1;
-    setSearchParams({ page: newPage.toString() });
+
+    // const newPage = event.page + 1;
+    // setSearchParams({ page: newPage.toString() });
   };
 
   return (
     <div>
       <h2>Artworks Table</h2>
       <DataTable value={artworks} loading={loading} paginator
-                 rows={10} totalRecords={totalRecords}
-                 first={(currentPage - 1) * 10}
-                 onPage={onPageChange}>
+        rows={10} totalRecords={totalRecords}
+        first={(currentPage - 1) * 10}
+        onPage={onPageChange}
+        stripedRows
+      >
         <Column field="title" header="Title" />
         <Column field="place_of_origin" header="Place of Origin" />
         <Column field="artist_display" header="Artist" />
