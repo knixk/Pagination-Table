@@ -1,7 +1,7 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  /* margin: 0; */
+  /* padding: 0; */
+  /* box-sizing: border-box; */
   /* border: 1px solid plum; */
 }
 
@@ -10,7 +10,7 @@
   max-width: 900px;
   margin: 20px;
   border: 1px solid gray;
-  padding: 20px;
+  padding: 20px;  
   border-radius: 10px;
 }
 
