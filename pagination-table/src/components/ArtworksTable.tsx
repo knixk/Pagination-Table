@@ -22,7 +22,7 @@ const ArtworksTable: React.FC = () => {
         setArtworks(data.data);
         setTotalRecords(data.pagination.total);
         console.log("------------>");
-        console.log(data.pagination.total);
+        console.log(data);
         console.log("------------>");
         setLoading(false);
       });
@@ -36,13 +36,14 @@ const ArtworksTable: React.FC = () => {
     // const newPage = event.page + 1;
     // setSearchParams({ page: newPage.toString() });
     console.log(event);
-    
+
   };
 
   return (
     <div className='artworks'>
       <h2>Artworks Table</h2>
       <DataTable value={artworks} loading={loading} paginator
+        rowsPerPageOptions={[5, 10, 25, 50]}
         rows={rows} totalRecords={totalRecords}
         first={(currentPage - 1) * 10}
         onPage={onPageChange}>
